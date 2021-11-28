@@ -10,7 +10,7 @@ function NewsFeed() {
       url: "https://crypto-news-live.p.rapidapi.com/news",
       headers: {
         "x-rapidapi-host": "crypto-news-live.p.rapidapi.com",
-        "x-rapidapi-key": "4e8a29ced8msh70ccb8b4c63f94ep157a4cjsnddad9329e7ab",
+        "x-rapidapi-key": process.env.api_key,
       },
     };
 
@@ -26,15 +26,17 @@ function NewsFeed() {
   }, []);
 
   const firstSeven = articles.slice(0, 7);
-    return <div className="news-feed">
-    
-            {firstSeven.map((article) => {
-                return <div className="news-feed-item">
-                    <a href={article.url}>{article.title}</a>
-                </div>
-            }
-            )}
-  </div>;
+  return (
+    <div className="news-feed">
+      {firstSeven.map((article) => {
+        return (
+          <div className="news-feed-item">
+            <a href={article.url}>{article.title}</a>
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 export default NewsFeed;
